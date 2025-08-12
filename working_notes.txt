@@ -1,0 +1,5 @@
+Notes 
+1. gym.Env = gym.Env is a base class provided by the gymnasium library
+Serves as a blueprint for world/game modelling and it will follow the standard rules defined by gym.Env (basic rules that are commmon in all games/models)
+
+2. self.action_space = defines all the possible actions the agent can take 

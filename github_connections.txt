@@ -1,0 +1,79 @@
+# 1. Initialize a Git repository in your existing folder
+git init .
+
+# 2. Add all files to the staging area
+git add .
+
+# 3. Commit the staged files to your local repository history
+git commit -m "Initial commit"
+
+# 4. (Optional but recommended) Rename the primary branch to 'main'
+git branch -M main
+
+# 5. Connect your local repo to the remote one on GitHub
+git remote add origin <your-github-repo-url>
+
+# 6. Push your local 'main' branch to the 'origin' remote
+git push -u origin main
+
+Error occurs in stage 6 - 
+The Explanation: What "fetch first" and "rejected" Means
+The error message Updates were rejected because the remote contains work that you do not have locally is the key.
+
+Here’s what happened:
+
+On your computer, you created a repository history starting with your "Initial commit" (git init, git add, git commit).
+When you created the BisisthaP/MiniProjects repository on GitHub, you likely checked a box to add a README.md, .gitignore, or LICENSE file.
+Doing that created an "Initial commit" directly on the GitHub server.
+
+Solution - 
+1. git pull origin main --allow-unrelated-histories
+git pull origin main: This tells Git to fetch the main branch from your origin remote and merge it into your current local branch.
+--allow-unrelated-histories: This flag explicitly allows Git to merge two histories that started from different initial commits.
+
+2. A Text Editor Might Open:
+
+After you run the pull command, Git will likely open a command-line text editor (like Vim or Nano) with a pre-filled merge commit message like Merge branch 'main' of https://github.com/BisisthaP/MiniProjects.
+
+This is normal! You don't need to change anything. Simply save and close the file:
+
+If it's Vim (most likely): Press Esc, then type :wq and press Enter.
+If it's Nano: Press Ctrl+X, then Y to confirm, and then Enter.
+
+3. git push -u origin main 
+Pushing the merged history 
+
+The Solution: Delete the Swap File and Try Again
+Since we know that you just want to complete the merge commit, the safest and easiest thing to do is to exit this warning, delete the old swap file, and then run the commit command again.
+
+Step 1: Get Out of the Warning Message
+
+First, press the q key on your keyboard to quit the message viewer and return to a normal command prompt.
+
+Step 2: Delete the Old Swap File
+
+Now, copy and paste the following command exactly as it is and press Enter. This will delete the leftover recovery file.
+
+rm /c/Users/SG0705302/Downloads/MiniProjects/.git/.COMMIT_EDITMSG.swp
+Step 3: Try Committing Again
+
+The problematic file is now gone. Let's try to commit one more time.
+
+git commit
+Step 4: Properly Exit Vim
+
+This time, the Vim editor should open cleanly without any warnings. It will show the merge commit message.
+
+To save the message and exit Vim correctly:
+
+Press the Esc key to make sure you are in "Normal mode".
+Type :wq
+Press Enter.
+(:wq stands for write and quit).
+
+After this, you will be back at your command prompt, and the merge will be complete!
+
+Final Step: Push Your Code
+Now that the merge is finally committed, you can push your changes to GitHub.
+
+git push origin main
